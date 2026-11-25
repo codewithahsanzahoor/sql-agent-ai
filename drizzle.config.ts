@@ -1,10 +1,12 @@
 import { config } from 'dotenv';
+config({ path: '.env.local' });
+
 import { defineConfig } from 'drizzle-kit';
 
 config({ path: ['.env.local', '.env'] });
 
 export default defineConfig({
-	out: './drizzle',
+	out: './db/migrations',
 	schema: './db/schema.ts',
 	dialect: 'turso',
 	dbCredentials: {

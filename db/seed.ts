@@ -1,5 +1,5 @@
 import { config } from 'dotenv';
-// config({ path: '.env.local' });
+import { inArray } from 'drizzle-orm';
 import { db } from './index';
 import { customers, orders } from './schema';
 
@@ -35,6 +35,15 @@ async function seed() {
 	const secondId = allCustomers[1]?.id ?? firstId;
 	const thirdId = allCustomers[2]?.id ?? firstId;
 	const fourthId = allCustomers[3]?.id ?? firstId;
+
+	await db
+		.delete(orders)
+		.where(
+			inArray(
+				orders.customerId,
+				allCustomers.map((c) => c.id),
+			),
+		);
 
 	await db.insert(orders).values([
 		{
