@@ -13,6 +13,7 @@ async function reset() {
 	await client.execute('DROP TABLE IF EXISTS `orders`');
 	await client.execute('DROP TABLE IF EXISTS `customers`');
 	await client.execute('DROP TABLE IF EXISTS `__drizzle_migrations`');
+	await client.execute('DROP TABLE IF EXISTS `rate_limits`');
 	console.log('Database reset complete.');
 }
 

@@ -18,3 +18,9 @@ export const orders = sqliteTable('orders', {
 	status: text('status').notNull(), // e.g. 'delivered', 'pending', 'cancelled'
 	orderDate: text('order_date').notNull(), // e.g. '2026-11-10'
 });
+
+export const rateLimits = sqliteTable('rate_limits', {
+	key: text('key').primaryKey(), // e.g. 'minute:1.2.3.4' or 'hour:1.2.3.4'
+	windowStart: integer('window_start').notNull(), // epoch ms of current window start
+	count: integer('count').notNull(),
+});
